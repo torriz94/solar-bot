@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
+          git pull --rebase origin main || true
           git add state.json
           git diff --cached --quiet || git commit -m "Aggiorna stato notifiche"
-          git push origin main
+          git push origin main || true
