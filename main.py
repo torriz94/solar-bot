@@ -194,7 +194,7 @@ def main():
 
     if battery_soc >= 80 and not state["notified_80"]:
         text = (
-            f"Batteria al {battery_soc:.0f}%.\n"
+            f"[TEST 80] Batteria al {battery_soc:.0f}%.\n"
             f"FV attuale: {solar_power} W\n"
             f"Stima arrivo al 100%: {eta_100}\n"
             f"Notte Basaluzzo 22-06: media {night_avg} C, minima {night_min} C"
