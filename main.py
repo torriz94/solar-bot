@@ -192,6 +192,16 @@ def main():
         state["notified_80"] = False
         state["notified_100"] = False
 
+    if battery_soc >= 80 and not state["notified_80"]:
+        text = (
+            f"Batteria al {battery_soc:.0f}%.\n"
+            f"FV attuale: {solar_power} W\n"
+            f"Stima arrivo al 100%: {eta_100}\n"
+            f"Notte Basaluzzo 22-06: media {night_avg} C, minima {night_min} C"
+        )
+        send_telegram(text)
+        state["notified_80"] = True
+
     if battery_soc >= 100 and not state["notified_100"]:
         text = (
             f"Batteria al 100%.\n"
@@ -201,16 +211,6 @@ def main():
         )
         send_telegram(text)
         state["notified_100"] = True
-
-    elif battery_soc >= 80 and not state["notified_80"]:
-        text = (
-            f"Batteria al {battery_soc:.0f}%.\n"
-            f"FV attuale: {solar_power} W\n"
-            f"Stima arrivo al 100%: {eta_100}\n"
-            f"Notte Basaluzzo 22-06: media {night_avg} C, minima {night_min} C"
-        )
-        send_telegram(text)
-        state["notified_80"] = True
 
     save_state(state)
 
